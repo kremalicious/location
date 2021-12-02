@@ -16,6 +16,8 @@ Location is currently fetched from my (private) nomadlist.com profile, making su
 https://location.kremalicious.com
 ```
 
+Used to display location on my [portfolio](https://matthiaskretschmann.com) & [blog](https://kremalicious.com).
+
 ## ⬆️ Deployment
 
 Every branch or Pull Request is automatically deployed by [Vercel](https://vercel.com) with their GitHub integration. A link to a deployment will appear under each Pull Request.
