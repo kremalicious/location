@@ -1,0 +1,29 @@
+{
+  "name": "@kremalicious/location",
+  "description": "Microservice API endpoint to fetch and expose my location.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://matthiaskretschmann.com",
+  "scripts": {
+    "start": "vercel dev",
+    "test": "npm run type-check",
+    "format": "prettier --ignore-path .gitignore './**/*.{css,yml,js,ts,tsx,json}' --write",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.11",
+    "@vercel/node": "^1.11.0",
+    "prettier": "^2.5.0",
+    "typescript": "^4.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kremalicious/location"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
