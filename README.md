@@ -10,7 +10,7 @@
 
 ## 🏄 Usage
 
-Location is currently fetched from my (private) nomadlist.com profile, making sure the API key is hidden from any browser, and only the relevant location data is exposed instead of the whole profile data.
+Location is currently fetched from my (private) nomadlist.com profile, making sure the API key is hidden from any browser, and only the relevant location data is exposed instead of the whole profile data response.
 
 ```text
 https://location.kremalicious.com

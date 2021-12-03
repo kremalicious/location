@@ -1,11 +1,32 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import axios, { AxiosResponse, Method } from 'axios'
+import axios, { AxiosResponse } from 'axios'
+
+interface NomadListLocation {
+  city: string
+  country: string
+  country_code: string
+  latitude: number
+  longitude: number
+  epoch_start: number
+  epoch_end: number
+  date_start: string
+  date_end: string
+  place_photo: string
+}
+
+interface NomadListLocationResponse {
+  location: {
+    now: NomadListLocation
+    previous: NomadListLocation
+    next: NomadListLocation
+  }
+}
 
 export default async (req: VercelRequest, res: VercelResponse) => {
   if (!process.env.NOMADLIST_PROFILE) return
 
   try {
-    const response = await axios(
+    const response: AxiosResponse<NomadListLocationResponse> = await axios(
       `https://nomadlist.com/@${process.env.NOMADLIST_PROFILE}.json?key=${process.env.NOMADLIST_KEY}`
     )
     if (!response?.data) return
