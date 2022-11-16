@@ -1,5 +1,4 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import axios, { AxiosResponse } from 'axios'
 
 interface NomadListLocation {
   city: string
@@ -23,16 +22,25 @@ interface NomadListLocationResponse {
 }
 
 export default async (req: VercelRequest, res: VercelResponse) => {
-  if (!process.env.NOMADLIST_PROFILE) return
-
   try {
-    const response: AxiosResponse<NomadListLocationResponse> = await axios(
+    if (!process.env.NOMADLIST_PROFILE) {
+      throw new Error('Missing NOMADLIST_PROFILE env variable')
+    }
+    if (!process.env.NOMADLIST_KEY) {
+      throw new Error('Missing NOMADLIST_KEY env variable')
+    }
+
+    const response = await fetch(
       `https://nomadlist.com/@${process.env.NOMADLIST_PROFILE}.json?key=${process.env.NOMADLIST_KEY}`
     )
-    if (!response?.data) return
+    if (!response || !response.ok || response.status !== 200) {
+      throw new Error("Couldn't fetch data from NomadList")
+    }
+    const json = (await response.json()) as NomadListLocationResponse
 
+    res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate')
     // return only the location part of the data
-    res.json(response.data.location)
+    res.status(200).json(json.location)
   } catch (error) {
     res.status(500).send(error)
   }
