@@ -10,6 +10,9 @@
     "format": "prettier --ignore-path .gitignore './**/*.{css,yml,js,ts,tsx,json}' --write",
     "type-check": "tsc --noEmit"
   },
+  "dependencies": {
+    "cross-fetch": "^3.1.5"
+  },
   "devDependencies": {
     "@types/node": "^18.11.9",
     "@vercel/node": "^2.6.3",

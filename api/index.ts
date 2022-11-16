@@ -1,4 +1,5 @@
-import { VercelRequest, VercelResponse } from '@vercel/node'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
+import fetch from 'cross-fetch'
 
 interface NomadListLocation {
   city: string
