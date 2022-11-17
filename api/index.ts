@@ -1,6 +1,3 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
-import fetch from 'cross-fetch'
-
 interface NomadListLocation {
   city: string
   country: string
@@ -22,7 +19,17 @@ interface NomadListLocationResponse {
   }
 }
 
-export default async (req: VercelRequest, res: VercelResponse) => {
+export const config = {
+  runtime: 'experimental-edge'
+}
+
+function removeUnwantedKeys(location: NomadListLocation) {
+  const { place_photo, latitude, longitude, epoch_start, epoch_end, ...rest } =
+    location
+  return rest
+}
+
+export default async () => {
   try {
     if (!process.env.NOMADLIST_PROFILE) {
       throw new Error('Missing NOMADLIST_PROFILE env variable')
@@ -39,10 +46,19 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     }
     const json = (await response.json()) as NomadListLocationResponse
 
-    res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate')
-    // return only the location part of the data
-    res.status(200).json(json.location)
+    // return only parts of the data
+    const final = {
+      now: removeUnwantedKeys(json.location.now),
+      next: removeUnwantedKeys(json.location.next)
+    }
+    return new Response(JSON.stringify(final), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 's-maxage=60, stale-while-revalidate'
+      }
+    })
   } catch (error) {
-    res.status(500).send(error)
+    return new Response(JSON.stringify(error), { status: 500 })
   }
 }
