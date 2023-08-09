@@ -8,18 +8,23 @@
     "start": "vercel dev",
     "test": "npm run type-check",
     "format": "prettier --ignore-path .gitignore './**/*.{css,yml,js,ts,tsx,json}' --write",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "get-checkins": "node ./scripts/get-checkins.mjs"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
-    "prettier": "^2.8.3",
-    "typescript": "^4.9.4"
+    "@types/node": "^20.4.9",
+    "@vercel/node": "^2.15.9",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.46.0",
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.0.1",
+    "typescript": "^5.1.6"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/kremalicious/location"
   },
   "engines": {
-    "node": "16"
+    "node": "18"
   }
 }

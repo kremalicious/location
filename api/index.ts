@@ -1,64 +1,33 @@
-interface NomadListLocation {
-  city: string
-  country: string
-  country_code: string
-  latitude: number
-  longitude: number
-  epoch_start: number
-  epoch_end: number
-  date_start: string
-  date_end: string
-  place_photo: string
-}
-
-interface NomadListLocationResponse {
-  location: {
-    now: NomadListLocation
-    previous: NomadListLocation
-    next: NomadListLocation
-  }
-}
+import { getLastCheckin } from '../lib/foursquare'
+import { NomadListLocation, getNomadList } from '../lib/nomadlist'
 
 export const config = {
   runtime: 'experimental-edge'
 }
 
-function removeUnwantedKeys(location: NomadListLocation) {
-  const { place_photo, latitude, longitude, epoch_start, epoch_end, ...rest } =
-    location
-  return rest
+interface Location extends NomadListLocation {
+  lastCheckin?: string
 }
 
-export default async () => {
+declare type LocationResponse = {
+  now: Location
+  next: Location
+}
+
+export default async function handler() {
   try {
-    if (!process.env.NOMADLIST_PROFILE) {
-      throw new Error('Missing NOMADLIST_PROFILE env variable')
-    }
-    if (!process.env.NOMADLIST_KEY) {
-      throw new Error('Missing NOMADLIST_KEY env variable')
-    }
+    const nomadlist = await getNomadList()
+    const foursquare = await getLastCheckin()
 
-    const response = await fetch(
-      `https://nomadlist.com/@${process.env.NOMADLIST_PROFILE}.json?key=${process.env.NOMADLIST_KEY}`
-    )
-    if (!response || !response.ok || response.status !== 200) {
-      throw new Error("Couldn't fetch data from NomadList")
-    }
-    const json = (await response.json()) as NomadListLocationResponse
+    const response = {
+      now: { ...nomadlist.now, ...(foursquare && { lastCheckin: foursquare }) },
+      next: { ...nomadlist.next }
+    } as LocationResponse
 
-    // return only parts of the data
-    const final = {
-      now: removeUnwantedKeys(json.location.now),
-      next: removeUnwantedKeys(json.location.next)
-    }
-    return new Response(JSON.stringify(final), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 's-maxage=60, stale-while-revalidate'
-      }
+    return new Response(JSON.stringify(response, null, 2), {
+      headers: { 'content-type': 'application/json' }
     })
   } catch (error) {
-    return new Response(JSON.stringify(error), { status: 500 })
+    return new Response(JSON.stringify(error, null, 2), { status: 500 })
   }
 }
