@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.5.7",
-    "@vercel/node": "^3.0.3",
+    "@vercel/node": "^3.0.6",
     "dotenv": "^16.3.1",
     "eslint": "^8.48.0",
     "node-fetch": "^3.3.2",
