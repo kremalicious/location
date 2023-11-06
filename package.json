@@ -12,7 +12,7 @@
     "get-checkins": "node ./scripts/get-checkins.mjs"
   },
   "devDependencies": {
-    "@types/node": "^20.5.7",
+    "@types/node": "^20.8.10",
     "@vercel/node": "^3.0.3",
     "dotenv": "^16.3.1",
     "eslint": "^8.48.0",
