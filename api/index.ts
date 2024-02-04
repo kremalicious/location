@@ -2,7 +2,7 @@ import { getLastCheckin } from '../lib/foursquare'
 import { NomadListLocation, getNomadList } from '../lib/nomadlist'
 
 export const config = {
-  runtime: 'experimental-edge'
+  runtime: 'edge'
 }
 
 interface Location extends NomadListLocation {
@@ -14,10 +14,11 @@ declare type LocationResponse = {
   next: Location
 }
 
-export default async function handler() {
+export async function GET(request: Request) {
   try {
     const nomadlist = await getNomadList()
-    const foursquare = await getLastCheckin()
+    // const foursquare = await getLastCheckin()
+    const foursquare = 'disabled'
 
     const response = {
       now: { ...nomadlist.now, ...(foursquare && { lastCheckin: foursquare }) },
