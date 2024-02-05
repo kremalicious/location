@@ -1,4 +1,4 @@
-import { getLastCheckin } from '../lib/foursquare'
+// import { getLastCheckin } from '../lib/foursquare'
 import { NomadListLocation, getNomadList } from '../lib/nomadlist'
 
 export const config = {
@@ -14,7 +14,7 @@ declare type LocationResponse = {
   next: Location
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const nomadlist = await getNomadList()
     // const foursquare = await getLastCheckin()
@@ -26,7 +26,11 @@ export async function GET(request: Request) {
     } as LocationResponse
 
     return new Response(JSON.stringify(response, null, 2), {
-      headers: { 'content-type': 'application/json' }
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 's-maxage=300, stale-while-revalidate=300'
+      }
     })
   } catch (error) {
     return new Response(JSON.stringify(error, null, 2), { status: 500 })
