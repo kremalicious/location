@@ -5,25 +5,25 @@
   "license": "MIT",
   "homepage": "https://matthiaskretschmann.com",
   "scripts": {
-    "start": "vercel dev",
-    "test": "npm run type-check",
-    "format": "prettier --ignore-path .gitignore './**/*.{css,yml,js,ts,tsx,json}' --write",
-    "type-check": "tsc --noEmit",
-    "get-checkins": "node ./scripts/get-checkins.mjs"
+    "dev": "vercel dev",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "typecheck": "tsc --noEmit",
+    "get-checkins": "tsx ./scripts/get-checkins.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.11.16",
-    "@vercel/node": "^3.0.26",
-    "dotenv": "^16.4.1",
-    "eslint": "^9.0.0",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.4"
+    "@kremalicious/config": "1.1.0",
+    "@types/node": "22.15.3",
+    "@vercel/node": "5.1.15",
+    "dotenv": "16.5.0",
+    "tsx": "4.19.4",
+    "typescript": "5.8.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/kremalicious/location"
   },
   "engines": {
-    "node": "18"
+    "node": "22"
   }
 }

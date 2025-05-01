@@ -1,12 +1,15 @@
+import type { FoursquareApiResponse } from './types'
+
 //
 // Get last checkin from foursquare
 //
-const url = `https://api.foursquare.com/v2/users/self/checkins?oauth_token=${process.env.FOURSQUARE_KEY}&v=20221201&limit=1`
+const apiKey = process.env.FOURSQUARE_KEY
+const url = `https://api.foursquare.com/v2/users/self/checkins?oauth_token=${apiKey}&v=20221201&limit=1`
 
 export async function getLastCheckin() {
   try {
     const response = await fetch(url)
-    const json = await response.json()
+    const json = (await response.json()) as FoursquareApiResponse
     if (!json || json?.meta?.code !== 200)
       throw new Error(json?.meta?.errorDetail)
 
@@ -22,7 +25,7 @@ export async function getLastCheckin() {
           }
         }
       : null
-  } catch (error: any) {
-    console.error('Error fetching data:', error.message)
+  } catch (error: unknown) {
+    console.error('Error fetching data:', (error as Error).message)
   }
 }
