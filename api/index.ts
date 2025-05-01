@@ -1,5 +1,5 @@
-// import { getLastCheckin } from '@/lib/foursquare'
-import { type NomadListLocation, getNomadList } from '@/lib/nomadlist'
+// import { getLastCheckin } from '../lib/foursquare'
+import { type NomadListLocation, getNomadList } from '../lib/nomadlist'
 
 export const config = {
   runtime: 'edge'
