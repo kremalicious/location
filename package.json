@@ -9,7 +9,8 @@
     "lint": "biome check .",
     "format": "biome check --write .",
     "typecheck": "tsc --noEmit",
-    "get-checkins": "tsx ./scripts/get-checkins.ts"
+    "get:checkins": "tsx ./scripts/get-checkins.ts",
+    "set:github-location": "tsx ./scripts/github-location.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

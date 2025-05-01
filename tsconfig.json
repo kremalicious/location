@@ -9,7 +9,10 @@
     "rootDir": ".",
     "lib": ["es2022"],
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "exclude": ["node_modules", ".vercel"],
   "include": ["**/*.ts", "**/*.tsx"]

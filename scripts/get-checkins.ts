@@ -6,8 +6,8 @@
 //
 import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import type { Checkin, FoursquareApiResponse } from '@/lib/foursquare'
 import { config } from 'dotenv'
-import type { Checkin, FoursquareApiResponse } from '../lib/foursquare'
 
 config()
 

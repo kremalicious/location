@@ -5,23 +5,19 @@
 **Table of Contents**
 
 - [🏄 Usage](#-usage)
-- [⬆️ Deployment](#️-deployment)
 - [Development](#development)
+  - [Scripts](#scripts)
 - [🏛 License](#-license)
 
 ## 🏄 Usage
 
-Location is currently fetched from my (private) nomadlist.com profile & Foursquare/Swarm check-ins, making sure any API keys are hidden from any browser, and only the relevant location data is exposed.
+Location is currently fetched from my (private) nomadlist.com profile & Foursquare/Swarm check-ins, making sure only the relevant location data is exposed.
 
 ```text
 https://location.kremalicious.com
 ```
 
 Used to display location on my [portfolio](https://matthiaskretschmann.com) & [blog](https://kremalicious.com).
-
-## ⬆️ Deployment
-
-Every branch or Pull Request is automatically deployed by [Vercel](https://vercel.com) with their GitHub integration. A link to a deployment will appear under each Pull Request.
 
 ## Development
 
@@ -30,12 +26,20 @@ Requires env vars:
 - `NOMADLIST_PROFILE`
 - `NOMADLIST_KEY`
 - `FOURSQUARE_KEY`
+- `GITHUB_TOKEN`
 
 ```bash
 npm run dev
+```
 
+### Scripts
+
+```bash
 # fetches all Foursquare/Swarm checkins and writes them out to checkins.json
-npm run get-checkins
+npm run get:checkins
+
+# set GitHub profile location
+npm run set:github-location
 ```
 
 ## 🏛 License

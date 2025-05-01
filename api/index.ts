@@ -1,5 +1,5 @@
-// import { getLastCheckin } from '../lib/foursquare'
-import { type NomadListLocation, getNomadList } from '../lib/nomadlist'
+// import { getLastCheckin } from '@/lib/foursquare'
+import { type NomadListLocation, getNomadList } from '@/lib/nomadlist'
 
 export const config = {
   runtime: 'edge'
@@ -9,7 +9,7 @@ interface Location extends NomadListLocation {
   lastCheckin?: string
 }
 
-declare type LocationResponse = {
+export declare type LocationResponse = {
   now: Location
   next: Location
 }
