@@ -12,6 +12,7 @@
     "get-checkins": "tsx ./scripts/get-checkins.ts"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@kremalicious/config": "1.1.0",
     "@types/node": "22.15.3",
     "@vercel/node": "5.1.15",
