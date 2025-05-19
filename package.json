@@ -16,7 +16,7 @@
     "@biomejs/biome": "1.9.4",
     "@kremalicious/config": "1.1.0",
     "@types/node": "22.15.19",
-    "@vercel/node": "5.1.15",
+    "@vercel/node": "5.1.16",
     "dotenv": "16.5.0",
     "tsx": "4.19.4",
     "typescript": "5.8.3"
