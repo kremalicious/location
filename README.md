@@ -11,7 +11,7 @@
 
 ## 🏄 Usage
 
-Location is currently fetched from my (private) nomadlist.com profile & Foursquare/Swarm check-ins, making sure only the relevant location data is exposed.
+Location is fetched from my (private) [locationbase.me](https://locationbase.me) profile, making sure only the relevant location data is exposed.
 
 ```text
 https://location.kremalicious.com
@@ -23,8 +23,7 @@ Used to display location on my [portfolio](https://matthiaskretschmann.com) & [b
 
 Requires env vars:
 
-- `NOMADLIST_PROFILE`
-- `NOMADLIST_KEY`
+- `LOCATIONBASE_API_URL`
 - `FOURSQUARE_KEY`
 - `GITHUB_TOKEN`
 
@@ -38,7 +37,7 @@ npm run dev
 # fetches all Foursquare/Swarm checkins and writes them out to checkins.json
 npm run get:checkins
 
-# set GitHub profile location
+# set GitHub profile location manually
 npm run set:github-location
 ```
 
