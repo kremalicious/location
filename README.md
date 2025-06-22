@@ -11,7 +11,7 @@
 
 ## 🏄 Usage
 
-Location is currently fetched from my (private) [locationbase.me](https://locationbase.me) profile, making sure only the relevant location data is exposed.
+Location is fetched from my (private) [locationbase.me](https://locationbase.me) profile, making sure only the relevant location data is exposed.
 
 ```text
 https://location.kremalicious.com
