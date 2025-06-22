@@ -1,11 +1,11 @@
 // import { getLastCheckin } from '../lib/foursquare'
-import { type NomadListLocation, getNomadList } from '../lib/nomadlist'
+import { type LocationBaseLocation, getLocationBase } from '../lib/locationbase'
 
 export const config = {
   runtime: 'edge'
 }
 
-interface Location extends NomadListLocation {
+interface Location extends LocationBaseLocation {
   lastCheckin?: string
 }
 
@@ -16,13 +16,16 @@ export declare type LocationResponse = {
 
 export async function GET() {
   try {
-    const nomadlist = await getNomadList()
+    const locationbase = await getLocationBase()
     // const foursquare = await getLastCheckin()
     const foursquare = 'disabled'
 
     const response = {
-      now: { ...nomadlist.now, ...(foursquare && { lastCheckin: foursquare }) },
-      next: { ...nomadlist.next }
+      now: {
+        ...locationbase.now,
+        ...(foursquare && { lastCheckin: foursquare })
+      },
+      next: { ...locationbase.next }
     } as LocationResponse
 
     return new Response(JSON.stringify(response, null, 2), {
