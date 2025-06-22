@@ -13,8 +13,8 @@ export interface LocationBaseLocation {
 
 export interface LocationBaseResponse {
   trips: {
-    now: LocationBaseLocation
-    previous: LocationBaseLocation
-    next: LocationBaseLocation
+    current: LocationBaseLocation[]
+    past: LocationBaseLocation[]
+    future: LocationBaseLocation[]
   }
 }

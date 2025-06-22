@@ -12,10 +12,11 @@ export async function getLocationBase() {
     throw new Error("Couldn't fetch data from LocationBase")
 
   const json = (await response.json()) as LocationBaseResponse
+  console.log('LocationBase data fetched:', json)
 
   // return only parts of the data
   return {
-    now: json?.trips?.now,
-    next: json?.trips?.next
+    current: json?.trips?.current[0],
+    future: json?.trips?.future[0]
   }
 }

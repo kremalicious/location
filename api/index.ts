@@ -22,10 +22,10 @@ export async function GET() {
 
     const response = {
       now: {
-        ...locationbase.now,
+        ...locationbase.current,
         ...(foursquare && { lastCheckin: foursquare })
       },
-      next: { ...locationbase.next }
+      next: { ...locationbase.future }
     } as LocationResponse
 
     return new Response(JSON.stringify(response, null, 2), {
