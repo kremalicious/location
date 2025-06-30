@@ -12,7 +12,7 @@
     "set:github-location": "tsx ./scripts/github-location.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.0.6",
     "@kremalicious/config": "1.1.0",
     "@types/node": "24.0.3",
     "@vercel/node": "5.3.0",
