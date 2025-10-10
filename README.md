@@ -11,7 +11,7 @@
 
 ## 🏄 Usage
 
-Location is fetched from my (private) [locationbase.me](https://locationbase.me) profile, making sure only the relevant location data is exposed.
+Location is fetched from my (private) [lugara.me](https://lugara.me) profile, making sure only the relevant location data is exposed.
 
 ```text
 https://location.kremalicious.com
@@ -23,7 +23,7 @@ Used to display location on my [portfolio](https://matthiaskretschmann.com) & [b
 
 Requires env vars:
 
-- `LOCATIONBASE_API_URL`
+- `LUGARA_API_URL`
 - `FOURSQUARE_KEY`
 - `GITHUB_TOKEN`
 

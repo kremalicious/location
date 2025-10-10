@@ -1,4 +1,4 @@
-export interface LocationBaseLocation {
+export interface LugaraLocation {
   _id: string
   city: string
   country: string
@@ -11,10 +11,10 @@ export interface LocationBaseLocation {
   endDate: string
 }
 
-export interface LocationBaseResponse {
+export interface LugaraResponse {
   trips: {
-    current: LocationBaseLocation[]
-    past: LocationBaseLocation[]
-    future: LocationBaseLocation[]
+    current: LugaraLocation[]
+    past: LugaraLocation[]
+    future: LugaraLocation[]
   }
 }

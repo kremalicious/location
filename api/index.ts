@@ -1,11 +1,12 @@
+import type { LugaraLocation } from '../lib/lugara'
 // import { getLastCheckin } from '../lib/foursquare'
-import { type LocationBaseLocation, getLocationBase } from '../lib/locationbase'
+import { getLugara } from '../lib/lugara'
 
 export const config = {
   runtime: 'edge'
 }
 
-interface Location extends LocationBaseLocation {
+interface Location extends LugaraLocation {
   lastCheckin?: string
 }
 
@@ -16,16 +17,16 @@ export declare type LocationResponse = {
 
 export async function GET() {
   try {
-    const locationbase = await getLocationBase()
+    const lugara = await getLugara()
     // const foursquare = await getLastCheckin()
     const foursquare = 'disabled'
 
     const response = {
       now: {
-        ...locationbase.current,
+        ...lugara.current,
         ...(foursquare && { lastCheckin: foursquare })
       },
-      next: { ...locationbase.future }
+      next: { ...lugara.future }
     } as LocationResponse
 
     return new Response(JSON.stringify(response, null, 2), {
